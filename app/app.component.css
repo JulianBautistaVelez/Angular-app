@@ -1,0 +1,9 @@
+.titulo{
+    background-color: slategray;
+    color:snow;
+    padding-bottom: 1%;
+    padding-top: 1%;
+}
+.img-fluid{
+     max-width: 100px;
+}
