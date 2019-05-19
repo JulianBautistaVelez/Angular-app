@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>prueba</title>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+
+
+	
+<form action="introducir.php" method="POST">
+<input type="hidden" id="tabla" name="tabla" value="clientes">
+<label for="nombre">Nombre:</label>
+<input type="text" size="300" id="nom" name="nom"></input>
+<label for="dir"><br/>Dirección:</label>
+<input type="text" size="500" id="dir" name="dir"></input>
+<label for="tele"><br/>Teléfono:</label>
+<input type="tel" size="10" id="tel" name="tel"></input>
+<label for="trab"><br/>Trabajos:</label>
+<input type="text" size="500" id="trab" name="trab"></input>
+<label for="presup"><br/>Presupuestos:</label>
+<input type="text" size="500" id="pres" name="pres"></input>
+<label for="comen"><br/>Comentarios:</label>
+<input type="text" size="1000" id="com" name="com"></input>
+<input type="submit" value="introducir cliente">
+</form>
+
+
+/*****************************************************************************************************************************************************************************/
+
+<form action="consultar.php" method="get">
+<input type="hidden" id="tabla" name="tabla" value="clientes">
+<label for="consulta"><br/>Introduce aquí el termino para buscar al cliente (puede ser un nombre, un teléfono, una dirección, etc):</label>
+<input type="text" size="500" id="consulta" name="consulta"></input>
+<input type="submit">
+</form>
+
+/*****************************************************************************************************************************************************************************/
+
+	
+<form action="introducir.php" method="get">
+<input type="hidden" id="tabla" name="tabla" value="telas">
+<label for="nombre_tela">Nombre*:</label>
+<input type="text" size="300" id="nombre_tela" name="nombre_tela"></input>
+<label for="precio_pro"><br/>Precio de distribuidor:</label>
+<input type="text" size="5" id="precio_pro" name="precio_pro"></input>
+<label for="precio_cli"><br/>Precio a clientes:</label>
+<input type="text" size="5" id="precio_cli" name="precio_cli"></input>
+<label for="trab"><br/>Comentarios:</label>
+<input type="text" size="500" id="comentarios_tela" name="comentarios_tela"></input>
+<label for="proveedor"><br/>Proveedor:</label>
+<select multiple id="proveedor" name="proveedor">
+  <option value="Tapicerías Ruiz">Tap Ruiz</option>
+  <option value="Tapicerías Gomez">Tap Gomez</option>
+  <option value="Tapicerías Turia">Tap Turia</option>
+  <option value="Otros">Otros</option>
+</select>
+
+<input type="submit" value="introducir tela">
+</form>
+
+/*****************************************************************************************************************************************************************************/
+
+<form action="consultar.php" method="get">
+<input type="hidden" id="tabla" name="tabla" value="telas">
+<label for="consulta"><br/>Introduce aquí el termino para buscar la tela (puede ser un nombre, un precio, un proveedor o un comentario):</label>
+<input type="text" size="500" id="consulta_tela" name="consulta_tela"></input>
+<input type="submit">
+</form>
+
+/*****************************************************************************************************************************************************************************/
+
+	
+<form action="introducir.php" method="get">
+<input type="hidden" id="tabla" name="tabla" value="cuentas">
+
+<label for="concepto">concepto:</label>
+<input type="text" size="300" id="con" name="con"></input>
+
+<label for="tipo"><br/>gasto o ingreso:</label>
+<select multiple id="tipo" name="tipo">
+  <option value="1">ingreso</option>
+  <option value="0">gasto</option>
+</select>
+
+<label for="destino"><br/>Banco o caja:</label>
+<select multiple id="c_b" name="c_b">
+  <option value="1">banco</option>
+  <option value="0">caja</option>
+</select>
+
+<label for="valor"><br/>cantidad:</label>
+<input type="text" size="5" id="val" name="val"></input>
+
+<label for="trab"><br/>dinero en caja:</label>
+<input type="text" size="500" id="din_caja" name="din_caja"></input>
+
+<label for="trab"><br/>dinero en banco:</label>
+<input type="text" size="500" id="din_banco" name="din_banco"></input>
+
+<input type="submit" value="Introducir movimiento">
+</form>
+
+/*****************************************************************************************************************************************************************************/
+
+<form action="consultar.php" method="get">
+<input type="hidden" id="tabla" name="tabla" value="cuentas">
+<label for="consulta"><br/>Click aqui para ver todos los movimientos de las cuentas</label>
+<input type="submit">
+</form>
+
+/*****************************************************************************************************************************************************************************/
+
+
+
+</body>
+
+</html>
