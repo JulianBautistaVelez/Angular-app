@@ -1,4 +1,12 @@
 <div class="row">
-  <div class="col-md-8"><h1>Dinero disponible en {{origen|uppercase}}: </h1></div>
-  <div class="col-md-4"><h2>{{dinero|currency:'€'}}</h2></div>
+  <div class="col-md-8">
+    <h1 (click)="moverDinero()">
+      Dinero disponible en {{ origen | uppercase }}:
+    </h1>
+  </div>
+  <div class="col-md-4">
+    <h2 (click)="moverDinero()">
+      {{ dinero | currency: "€" }}
+    </h2>
+  </div>
 </div>

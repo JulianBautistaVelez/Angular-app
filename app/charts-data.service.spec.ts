@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PieDataService } from './pie-data.service';
+import { ChartsDataService } from './charts-data.service';
 
-describe('PieDataService', () => {
+describe('ChartsDataService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: PieDataService = TestBed.get(PieDataService);
+    const service: ChartsDataService = TestBed.get(ChartsDataService);
     expect(service).toBeTruthy();
   });
 });

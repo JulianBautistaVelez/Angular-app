@@ -1,4 +1,4 @@
 "use strict";
 
-export const url_get = "./php/consultar.php";
-export const url_post = "./php/introducir.php";
+export const url_post = "YOUR API URL TO POST";
+export const url_get = "YOUR API URL TO GET";

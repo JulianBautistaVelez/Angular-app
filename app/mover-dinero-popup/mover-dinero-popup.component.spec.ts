@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PieChartComponent } from './pie-chart.component';
+import { MoverDineroPopupComponent } from './mover-dinero-popup.component';
 
-describe('PieChartComponent', () => {
-  let component: PieChartComponent;
-  let fixture: ComponentFixture<PieChartComponent>;
+describe('MoverDineroPopupComponent', () => {
+  let component: MoverDineroPopupComponent;
+  let fixture: ComponentFixture<MoverDineroPopupComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PieChartComponent ]
+      declarations: [ MoverDineroPopupComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PieChartComponent);
+    fixture = TestBed.createComponent(MoverDineroPopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

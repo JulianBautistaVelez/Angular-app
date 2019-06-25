@@ -1,45 +1,73 @@
-import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
-import * as myGlobals from './globals';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
+import * as myGlobals from "./globals";
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    "Content-Type": "application/json"
+  })
+};
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class VerMovimientosServiceService {
-
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) {}
   /*direcciones url post y get estan en myGlobals*/
-  final_url:string;
+  private values: any;
 
-  getMovimientos(){
-    
-    this.final_url=myGlobals.url_get+'?tabla=movimientos'
-    //console.log(this.final_url)
-    return this.http.get(this.final_url)
+  getMovimientos(fechas) {
+    //console.log(fechas);
+    var parametros = new HttpParams()
+      .set("tabla", "movimientos")
+      .set("fechaInicio", fechas.fechaInicio)
+      .set("fechaFinal", fechas.fechaFinal);
+    return this.http.get(myGlobals.url_get, { params: parametros });
   }
 
-  getIngresos(){
-    this.final_url=myGlobals.url_get+'?tabla=ingresos'
-    return this.http.get(this.final_url)
+  getIngresos(fechas) {
+    var parametros = new HttpParams()
+      .set("tabla", "ingresos")
+      .set("fechaInicio", fechas.fechaInicio)
+      .set("fechaFinal", fechas.fechaFinal);
+    return this.http.get(myGlobals.url_get, { params: parametros });
   }
 
-  getGastos(){
-    this.final_url=myGlobals.url_get+'?tabla=gastos'
-    return this.http.get(this.final_url)
+  getGastos(fechas) {
+    var parametros = new HttpParams()
+      .set("tabla", "gastos")
+      .set("fechaInicio", fechas.fechaInicio)
+      .set("fechaFinal", fechas.fechaFinal);
+    return this.http.get(myGlobals.url_get, { params: parametros });
   }
 
-  getMovimientosRecientes(){
-    this.final_url=myGlobals.url_get+'?tabla=mov_rec'
-    return this.http.get(this.final_url)
+  getMovimientosRecientes() {
+    var parametros = new HttpParams().set("tabla", "mov_rec");
+    return this.http.get(myGlobals.url_get, { params: parametros });
     /*return this.movimientos;*/
   }
-  
-  getDineroDisponible(){
-    this.final_url=myGlobals.url_get+'?tabla=din_disp'
-    //console.log(this.final_url)
-    return this.http.get(this.final_url)
+
+  getDineroDisponible() {
+    var parametros = new HttpParams().set("tabla", "din_disp");
+    return this.http.get(myGlobals.url_get, { params: parametros });
   }
 
-
-
+  moverDinero(cantidad, destino) {
+    this.values = {
+      tabla: "mover_dinero",
+      dinero: cantidad,
+      destino: destino
+    };
+    this.http.post<any>(myGlobals.url_post, this.values, httpOptions).subscribe(
+      (val: any) => {
+        console.log("POST call successful value returned in body", val);
+      },
+      response => {
+        console.log("POST call in error", response);
+      },
+      () => {
+        console.log("The POST observable is now completed.");
+      }
+    );
+  }
 }
