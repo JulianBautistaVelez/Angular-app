@@ -6,10 +6,10 @@
 		class clase_bd_taller{
 		protected $mysqli;
 		protected $xml;
-		protected $direccion_bd = "localhost";
-		protected $usuario_bd = "root";
-		protected $contrasenya_bd ="ultrakill1991";
-		protected $nombre_bd = "taller";
+		protected $direccion_bd = "YOUR DB URL HERE";
+		protected $usuario_bd = "YOUR DB USER HERE";
+		protected $contrasenya_bd ="YOUR BD PASSWORD HERE";
+		protected $nombre_bd = "YOUR DB NAME HERE";
 		
 			public function __construct(){
 				global $mysqli;
@@ -29,8 +29,7 @@
 				}
 				/*AQUI SE HA DE COMPROBAR SI LA BASE DE DATOS ESTA CREADA Y DE NO
 				* SER ASI DEBE CREARSE */
-				
-				$nombre_bd = 'taller';		
+					
 				$resultado = $mysqli->select_db($nombre_bd);
 				
 				if(!$resultado){
@@ -49,7 +48,7 @@
 			
 			function crea_bd(){
 				global $mysqli;
-				$consulta = "CREATE DATABASE taller;";
+				$consulta = "CREATE DATABASE ".$nombre_bd;
 				$resultado = $mysqli->query($consulta);
 				if(!$resultado){printf("Error creando la base de datos, error numero = %s\n ",$this->conexion->errno);}	
 				else {printf("base de datos creada = %s\n ",$resultado);}
