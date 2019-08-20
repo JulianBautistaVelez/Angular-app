@@ -12,27 +12,21 @@ const httpOptions = {
   providedIn: "root"
 })
 export class ChartsDataService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   /*direcciones url post y get estan en myGlobals*/
-  private values: any;
-
-  getHistorialDinero() {
-    var parametros = new HttpParams().set("tabla", "hist_dinero");
-    return this.http.get(myGlobals.url_get, { params: parametros });
-  }
 
   getHistorialDineroFiltrado() {
-    var parametros = new HttpParams().set("tabla", "hist_dinero_stats");
+    var parametros = new HttpParams().set(myGlobals.query, myGlobals.liquides_hist);
     return this.http.get(myGlobals.url_get, { params: parametros });
   }
 
   getIngresosPieData() {
-    var parametros = new HttpParams().set("tabla", "ingresos_stats");
+    var parametros = new HttpParams().set(myGlobals.query, myGlobals.ingresos_stats);
     return this.http.get(myGlobals.url_get, { params: parametros });
   }
 
   getGastosPieData() {
-    var parametros = new HttpParams().set("tabla", "gastos_stats");
+    var parametros = new HttpParams().set(myGlobals.query, myGlobals.gastos_stats);
     return this.http.get(myGlobals.url_get, { params: parametros });
   }
 }
