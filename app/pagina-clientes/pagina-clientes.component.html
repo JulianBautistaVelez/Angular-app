@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <button
+        class="btn btn-outline-success my-2 my-sm-0"
+        (click)="getClientes()"
+        type="submit"
+      >
+        Ver todos los clientes
+      </button>
+    </li>
+    <li class="nav-item">
+      <button
+        class="btn btn-outline-success my-2 my-sm-0"
+        (click)="getUltimosClientes()"
+        type="submit"
+      >
+        Ver los ultimos cliente
+      </button>
+    </li>
+  </ul>
+  <li class="nav-item">
+    <form [formGroup]="form" class="form-inline my-2 my-lg-0">
+      <input
+        class="form-control mr-sm-2"
+        formControlName="consulta"
+        type="search"
+        placeholder="Buscar"
+        aria-label="Search"
+      />
+      <button
+        [disabled]="form.invalid"
+        class="btn btn-outline-success my-2 my-sm-0"
+        (click)="searchInClientes(form)"
+        type="submit"
+      >
+        Buscar
+      </button>
+    </form>
+  </li>
+</nav>
+
+<div class="container">
+  <div *ngFor="let cliente of clientes; let i = index">
+    <mat-card class="card">
+      <mat-card-title>Nombre: {{ cliente.nombre }}</mat-card-title>
+      <mat-card-subtitle>{{ cliente.direccion | uppercase }}</mat-card-subtitle>
+      <mat-card-content>Teléfono: {{ cliente.telefono }}</mat-card-content>
+      <mat-card-content
+        >Comentarios: {{ cliente.comentarios }}
+      </mat-card-content>
+
+      <button mat-raised-button color="primary" (click)="editaCliente(i)">
+        Editar cliente
+      </button>
+    </mat-card>
+  </div>
+</div>
