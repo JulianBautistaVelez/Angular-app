@@ -1,0 +1,17 @@
+form {
+    margin: 20px auto;
+}
+.form-row {
+    padding: 5px 10px;
+}
+
+.form-row input {
+    padding: 5px 5px;
+    width: 100%;
+}
+
+.btn-group{
+    padding: 5px;
+}
+
+

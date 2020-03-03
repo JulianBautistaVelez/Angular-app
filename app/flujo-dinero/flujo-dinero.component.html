@@ -1,0 +1,58 @@
+<form  [formGroup]="form"> <!--#myForm="ngForm"-->
+  <h3>Dinero {{salida_entrada|lowercase}}</h3>
+  <div class="row">
+    
+    <div class="col-md-6">
+      <mat-form-field>
+        
+          <input matInput formControlName="cantidad" type="currency" placeholder="Cantidad (max 2 decimales)">
+          <mat-error *ngIf="cantidad.invalid && cantidad.touched">Es obligatorio indicar la cantidad</mat-error>
+        
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field>
+        
+          <input *ngIf="esEntrada" matInput formControlName="concepto" placeholder="Concepto" list="ingresos_frecuentes">
+          <datalist  id="ingresos_frecuentes">
+              <option *ngFor="let concepto of ingresosFrecuentes" value="{{concepto}}">
+          </datalist>
+
+          <input *ngIf="!esEntrada" matInput formControlName="concepto" placeholder="Concepto" list="gastos_frecuentes">
+          <datalist id="gastos_frecuentes">
+              <option *ngFor="let concepto of gastosFrecuentes" value="{{concepto}}">
+          </datalist>
+          
+         
+        
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-12">
+      <mat-button-toggle-group  formControlName="caja_banco" >
+        <mat-button-toggle  value="Caja">Caja</mat-button-toggle>
+        <mat-button-toggle  value="Banco">Banco</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
+    <div class="col-md-12">
+      <button mat-raised-button [disabled]="form.invalid" color="primary" (click)="submitHandler(form)">validar</button>
+    </div>
+
+  </div>
+</form>
+<toastr-notification></toastr-notification> 
+
+
+<!--
+  <div *ngIf="esEntrada">
+              <option *ngFor="let concepto of ingresosFrecuentes" value="{{concepto}}">
+            </div>
+            <div *ngIf="esEntrada">
+                <option *ngFor="let concepto of gastosFrecuentes" value="{{concepto}}">
+            </div>
+
+
+
+-->

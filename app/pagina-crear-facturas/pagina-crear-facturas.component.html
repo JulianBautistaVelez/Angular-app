@@ -1,0 +1,95 @@
+<h3>Crear una factura</h3>
+<mat-vertical-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="factDatos">
+    <form [formGroup]="factDatos">
+      <ng-template matStepLabel>Inserta datos de la factura</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Número de factura (3 dígitos)" formControlName="numero" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" formControlName="fecha" placeholder="Fecha de la factura">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperNext>Adelante</button>
+      </div>
+    </form>
+  </mat-step>
+  
+  <mat-step [stepControl]="factDatos">
+    <form [formGroup]="factDatos">
+      <ng-template matStepLabel>Inserta datos del cliente</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Nombre" formControlName="nombre" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="NIF" formControlName="nif" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Dirección" formControlName="direccion" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Cp/Provincia" formControlName="cpProvincia" required>
+      </mat-form-field>
+      <br>
+      <div>
+        <button mat-button matStepperPrevious>Atrás</button>
+        <button mat-button matStepperNext>Adelante</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="factDatos">
+      <form [formGroup]="factDatos">
+        <ng-template matStepLabel>Inserta items en la factura</ng-template>
+          <div class="formUnit" formArrayName="productos">
+            <div *ngFor="let producto of productoForms.controls; let i=index" [formGroupName]="i">
+                <mat-form-field>
+                    <input matInput placeholder="Cantidad" formControlName="cantidad" required>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <textarea matInput placeholder="Concepto" formControlName="concepto"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <input matInput placeholder="Valor unitario" formControlName="valor" required>
+                </mat-form-field>
+                <br>                
+                <div>
+                  <button mat-raised-button color="warn" (click)="deleteProducto(i)">Eliminar</button>
+                </div> 
+            </div>
+          </div>
+        <div>
+          <button mat-raised-button color="primary" (click)="addProducto()">Añadir</button>
+        </div>    
+        <div>
+          <button mat-button matStepperPrevious>Atrás</button>
+          <button mat-button matStepperNext>Adelante</button>
+        </div>
+        
+      </form>
+    </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Terminado</ng-template>
+      ¿desea crear la factura?
+    <mat-error *ngIf="factDatos.invalid">
+      Hay algún dato invalido entre los introducidos
+    </mat-error>
+    <div>
+      <button mat-stroked-button color="primary" [disabled]="factDatos.invalid" (click)="submitHandler()">Crear</button>
+      <button mat-stroked-button color="warn" (click)="stepper.reset()">Reiniciar</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
+<!-- 
+<embed *ngIf="success" style="width:200px;height:200px;" src="{{pdf}}">
+ -->
