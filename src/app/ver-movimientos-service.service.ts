@@ -1,6 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
+import { Dinero } from "./models/Dinero"; 
 import * as myGlobals from "./globals";
+import { Observable } from "rxjs";
+
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -48,9 +51,9 @@ export class VerMovimientosServiceService {
     /*return this.movimientos;*/
   }
 
-  getDineroDisponible() {
-    var parametros = new HttpParams().set("tabla", "din_disp");
-    return this.http.get(myGlobals.url_get, { params: parametros });
+  getDineroDisponible(): Observable<Dinero> {
+    //var parametros = new HttpParams().set("tabla", "din_disp");
+    return this.http.get<Dinero>(myGlobals.url_get + myGlobals.get_dinero_actual);
   }
 
   moverDinero(cantidad, destino) {

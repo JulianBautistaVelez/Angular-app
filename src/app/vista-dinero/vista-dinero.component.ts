@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { VerMovimientosServiceService } from "../ver-movimientos-service.service";
 import { MoverDineroPopupComponent } from "../mover-dinero-popup/mover-dinero-popup.component";
+import { Dinero } from "../models/Dinero";
 
 @Component({
   selector: "app-vista-dinero",
@@ -8,8 +9,9 @@ import { MoverDineroPopupComponent } from "../mover-dinero-popup/mover-dinero-po
   styleUrls: ["./vista-dinero.component.css"]
 })
 export class VistaDineroComponent implements OnInit {
-  dinero: any;
-  info: any;
+  dinero: Number;
+  data: Dinero;
+  isLoaded: Boolean = false;
   @Input() origen: string;
   constructor(
     private service: VerMovimientosServiceService,
@@ -21,14 +23,12 @@ export class VistaDineroComponent implements OnInit {
   }
 
   getDinero(): void {
-    /*IMPLEMENTAR AQUI UN USO DE UN SERVICIO WEB QUE REGRESE EL DINERO
-    DANDOLE EL ORIGEN BANCO/CAJA*/
-    this.service.getDineroDisponible().subscribe(data => {
-      this.info = data;
-
-      if (this.origen == "Caja") this.dinero = this.info[0]["caja"];
-      else this.dinero = this.info[0]["banco"];
-    });
+    this.service.getDineroDisponible().subscribe((data:Dinero) => {
+      this.data = data;
+      if (this.origen == "Caja") this.dinero = this.data["caja"];
+      else this.dinero = this.data["banco"];
+      this.isLoaded = true;
+    })
   }
 
   moverDinero() {
